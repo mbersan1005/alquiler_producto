@@ -1,6 +1,6 @@
 from datetime import timedelta
 from odoo import models, fields, api
-from odoo.exceptions import UserError, ValidationError
+from odoo.exceptions import ValidationError
 
 class AlquilerProducto(models.Model):
     _name='alquiler.producto'

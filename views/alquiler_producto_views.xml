@@ -28,7 +28,7 @@
 
         <record id="view_alquiler_tree" model="ir.ui.view">
             <field name="name">alquiler.producto.tree</field>
-            <field namem="model">alquiler.producto</field>
+            <field name="model">alquiler.producto</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="cliente"></field>
@@ -40,5 +40,10 @@
                 </tree>
             </field>
         </record>
+
+        <menuitem id="menu_alquiler_root" name="Alquileres" sequence="10"/>
+
+        <menuitem id="menu_alquiler_producto" name="Evaluaciones de Productos" 
+                  parent="menu_alquiler_root" action="action_alquiler_producto" sequence="20"/>
     </data>
 </odoo>
