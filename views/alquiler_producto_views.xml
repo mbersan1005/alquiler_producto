@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_alquiler_producto" model="ir.actions.act_window">
+            <field name="name">Alquileres</field>
+            <field name="res_model">alquiler.producto</field>
+            <field name="view_mode">tree, form</field>
+        </record>
+
+        <record id="view_alquiler_form" model="ir.ui.view">
+            <field name="name">alquiler.producto.form</field>
+            <field name="model">alquiler.producto</field>
+            <field name="arch" type="xml">
+                <form string="Alquiler de productos">
+                    <sheet>
+                        <group>
+                            <field name="cliente"></field>
+                            <field name="producto"></field>
+                            <field name="fecha_inicio"></field>
+                            <field name="fecha_final"></field>
+                            <field name="estado"></field>
+                            <field name="observaciones"></field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_alquiler_tree" model="ir.ui.view">
+            <field name="name">alquiler.producto.tree</field>
+            <field namem="model">alquiler.producto</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="cliente"></field>
+                    <field name="producto"></field>
+                    <field name="fecha_inicio"></field>
+                    <field name="fecha_final"></field>
+                    <field name="estado"></field>
+                    <field name="observaciones"></field>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
