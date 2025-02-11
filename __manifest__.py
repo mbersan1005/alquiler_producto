@@ -4,7 +4,7 @@
 'author': 'Miguel Ángel Bernal Sánchez',
 'category': 'Custom',
 'summary': 'Gestión de Alquiler de productos',
-'depends': ['base'],
+'depends': ['base', 'product'],
 'data': [
     'security/ir.model.access.csv',
     'views/alquiler_producto_views.xml',
