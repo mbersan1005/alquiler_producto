@@ -1,17 +1,20 @@
 from datetime import timedelta
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class AlquilerProducto(models.Model):
-    _name='alquiler.producto'
-    _description='Gestión de Alquiler de Productos'
+    _name = 'alquiler.producto'
+    _description = 'Gestión de Alquiler de Productos'
 
     cliente = fields.Many2one('res.partner', string='Cliente', store=True, required=True)
     producto = fields.Many2one('product.product', string='Producto', store=True, required=True)
     fecha_inicio = fields.Date(string='Fecha de Inicio del Alquiler', required=True)
     
     fecha_final = fields.Date(
-        string='Fecha del Final del Alquiler', 
+        string='Fecha del Final del Alquiler',
         compute='_compute_fecha_final',
         store=True,
         readonly=True
@@ -39,10 +42,13 @@ class AlquilerProducto(models.Model):
             product = self.env['product.product'].browse(self.producto.id)
             if not product.exists():
                 raise ValidationError('El producto seleccionado no existe')
-            
+
     @api.model
     def cambiar_estado_alquiler(self):
         hoy = fields.Date.today()
         alquileres = self.search([('fecha_final', '<', hoy), ('estado', '!=', 'entregado')])
+        _logger.info(f"Se han encontrado {len(alquileres)} alquileres con fecha final pasada.")
+        
         for alquiler in alquileres:
             alquiler.estado = 'no_entregado'
+            _logger.info(f"Estado del alquiler {alquiler.id} cambiado a 'no_entregado'.")
